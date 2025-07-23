@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/luanadefourny/bria/issues"
   },
-  "homepage": "https://github.com/luanadefourny/bria#readme"
+  "homepage": "https://github.com/luanadefourny/bria#readme",
+  "devDependencies": {
+    "jsdoc": "^4.0.4"
+  }
 }

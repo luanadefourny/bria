@@ -1,0 +1,9 @@
+{
+  "source": {
+    "include": ["server", "client/src"],
+    "includePattern": ".js$|.jsx$"
+  },
+  "opts": {
+    "destination": "./docs"
+  }
+}
