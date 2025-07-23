@@ -1,6 +1,6 @@
 'use strict';
 
-const mongoose = require('./../db.js');
+const mongoose = require('../db.js');
 
 const userBookSchema = new mongoose.Schema({
   userId: {
@@ -39,22 +39,6 @@ const userBookSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
-  // rating: {
-  //   type: Number,
-  //   required: false,
-  // },
-  // notes: {
-  //   type: String,
-  //   require: false,
-  // },
-  // dateStarted: {
-  //   type: [Date],
-  //   required: false,
-  // },
-  // dateCompleted: {
-  //   type: [Date],
-  //   required: false,
-  // },
   read: {
     type: Boolean,
     default: false,

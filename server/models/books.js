@@ -3,6 +3,14 @@
 const mongoose = require('./../db.js');
 
 const bookSchema = new mongoose.Schema({
+  worksKey: {
+    type: String,
+    required: true,
+  },
+  editionKey: {
+    type: String,
+    required: true,
+  },
   isbn: {
     type: String,
     required: true,
@@ -12,7 +20,7 @@ const bookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  author: {
+  authors: {
     type: [String],
     required: true,
   },

@@ -21,3 +21,5 @@ const shelfSchema = new mongoose.Schema({
 });
 
 const Shelf = mongoose.model('Shelf', shelfSchema);
+
+module.exports = Shelf;
