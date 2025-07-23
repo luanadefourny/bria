@@ -1,9 +1,22 @@
 {
-  "source": {
-    "include": ["server", "client/src"],
-    "includePattern": ".js$|.jsx$"
-  },
-  "opts": {
-    "destination": "./docs"
-  }
+    "plugins": [],
+    "recurseDepth": 20,
+    "source": {
+        "include": ["server", "client/src"],
+        "includePattern": ".*\\.(js|jsx)$",
+        "exclude": ["node_modules"],
+        "excludePattern": "node_modules"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    },
+    "opts": {
+      "destination": "./docs"
+    }
 }
