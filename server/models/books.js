@@ -4,15 +4,16 @@ const mongoose = require('./../db.js');
 
 const bookSchema = new mongoose.Schema({
   isbn: {
-    type: Number,
+    type: String,
     required: true,
+    unique: true,
   },
   title: {
     type: String,
     required: true,
   },
   author: {
-    type: String,
+    type: [String],
     required: true,
   },
   pages: {
@@ -23,28 +24,22 @@ const bookSchema = new mongoose.Schema({
     type: Number,
     require: false,
   },
-  published: {
+  publishedDate: {
     type: Date,
     required: false,
   },
+  description: {
+    type: String,
+    required: false,
+  },
   genres: {
-    type: Array,
+    type: [String],
     required: false,
   },
-  shelves:{
-    type: Array,
+  rating: {
+    type: Number,
     required: false,
-  },
-  read: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  owned: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
+  }
 });
 
 const Book = mongoose.model('Book', bookSchema);

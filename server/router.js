@@ -1,11 +1,11 @@
 'use strict';
 
 const express = require('express');
-const {  } = require('./controllers/books.js');
+const { getBooks } = require('./controllers/books.js');
 
 const router = express.Router();
 
-router.get('/books'); //all books
+router.get('/books', getBooks); //all books
 //TODO: add all endpoints here
 
 module.exports = router;
