@@ -3,7 +3,7 @@ import './AddBook.css';
 
 function AddBook () {
   return (
-    <div className="addBook">
+    <div className="addBook-container">
       AddBook component
     </div>
   );

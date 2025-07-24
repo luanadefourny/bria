@@ -17,7 +17,7 @@ export function Layout({ children }) {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         />
-        <title>Vite + React</title>
+        <title>bria</title>
         <Meta />
         <Links />
       </head>

@@ -1,5 +1,4 @@
 'use strict';
-// apiService service
 
 const searchUrl = 'https://openlibrary.org/search.json';
 const worksUrl = 'https://openlibrary.org/works';
@@ -23,7 +22,8 @@ async function getBooksBySearch (searchString) {
   const res = await fetch(`${searchUrl}?q=${urlSearchString}`);
   if (res.ok) {
     const data = await res.json();
-    return data.docs;
+    const filteredData = data.docs.filter(book => book.cover_edition_key && book.key);
+    return filteredData;
   } else {
     throw new Error('There was an error fetching the data - getBooksBySearch');
   }
@@ -48,4 +48,43 @@ async function getBookByIsbn (isbn) {
   }
 }
 
-export { getBooksBySearch, getBookByIsbn };
+/**
+ *
+ * 
+ * @async
+ * @function getBookByEditionKey
+ * @param {string} key
+ * @return {Promise<Object>} 
+ * @throws {Error}
+ */
+async function getBookByEditionKey (key) {
+  const res = await fetch(`${editionUrl}/${key}.json`);
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    throw new Error('There was an error fetching the data - getBookByEditionKey');
+  }
+}
+
+/**
+ *
+ * 
+ * @async
+ * @function getBookByWorksKey
+ * @param {string} key
+ * @return {Promise<Object>}
+ * @throws {Error}
+ */
+async function getBookByWorksKey (key) {
+  const res = await fetch(`${worksUrl}/${key}.json`);
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    } else {
+      throw new Error('There was an error fetching the data - getBookByWorksKey');
+    }
+
+}
+
+export { getBooksBySearch, getBookByIsbn, getBookByEditionKey, getBookByWorksKey };
