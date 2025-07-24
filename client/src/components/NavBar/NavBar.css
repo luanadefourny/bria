@@ -1,3 +1,27 @@
-.navBar {
-  /* Styles for NavBar */
+.navBar-container {
+  display: flex;
+  border: solid red 2px;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-logo {
+  width: 10rem;
+  margin: 1rem;
+}
+.navbar-navigation-container {
+  display: flex;
+  gap: 2rem;
+}
+.navbar-navigation-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.navbar-navigation-link:hover {
+  font-size: 1.2rem;;
+}
+.navbar-search-container {
+  display: flex;
+  margin: 1rem;
 }

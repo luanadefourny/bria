@@ -1,10 +1,13 @@
-import React from 'react';
+import NavBar from './../NavBar/NavBar';
+import Dashboard from './../Dashboard/Dashboard';
+
 import './Home.css';
 
-const Home = () => {
+function Home () {
   return (
     <div className="home-containter">
-      Home component
+      <NavBar />
+      <Dashboard/>
     </div>
   );
 };

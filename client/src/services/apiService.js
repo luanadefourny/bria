@@ -7,7 +7,27 @@ const editionUrl = 'https://openlibrary.org/books';
 
 const isbn_ProjectHailMary = '9781529157468';
 const isbn_ACourtOfSilverFlames = '9781526635365';
-
+/**
+ * Retrieves book data in an array using a general string from the OpenLibrary API.
+ * 
+ * @async
+ * @function getBooksBySearch
+ * @param {string} searchString The general search query string to look up
+ * @returns The book array from OpenLibrary
+ * @throws If the fetch fails or no data is returned
+ */
+async function getBooksBySearch (searchString) {
+  console.log(searchString);
+  const urlSearchString = searchString.split(' ').join('+');
+  console.log(urlSearchString);
+  const res = await fetch(`${searchUrl}?q=${urlSearchString}`);
+  if (res.ok) {
+    const data = await res.json();
+    return data.docs;
+  } else {
+    throw new Error('There was an error fetching the data - getBooksBySearch');
+  }
+}
 
 /**
  * Retrieves book data using its ISBN from the OpenLibrary API.
@@ -28,4 +48,4 @@ async function getBookByIsbn (isbn) {
   }
 }
 
-export { getBookByIsbn };
+export { getBooksBySearch, getBookByIsbn };

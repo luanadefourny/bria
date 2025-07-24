@@ -1,9 +1,9 @@
 import React from 'react';
 import './CurrentlyReading.css';
 
-const CurrentlyReading = () => {
+function CurrentlyReading () {
   return (
-    <div className="currentlyReading">
+    <div className="currentlyReading-container">
       CurrentlyReading component
     </div>
   );

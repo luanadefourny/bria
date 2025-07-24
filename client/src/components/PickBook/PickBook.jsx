@@ -1,9 +1,9 @@
 import React from 'react';
 import './PickBook.css';
 
-const PickBook = () => {
+function PickBook () {
   return (
-    <div className="pickBook">
+    <div className="pickBook-container">
       PickBook component
     </div>
   );

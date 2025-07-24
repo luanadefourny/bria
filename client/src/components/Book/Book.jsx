@@ -1,7 +1,7 @@
 import React from 'react';
 import './Book.css';
 
-const Book = () => {
+function Book () {
   return (
     <div className="book">
       Book component

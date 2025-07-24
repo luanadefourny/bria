@@ -11,7 +11,8 @@ export function Layout({ children }) {
     <html lang="en">
       <head>
         <meta charSet="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <link rel="icon" type="image/svg+xml" href="/bria_thumbnail_green.svg" />
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap" rel="stylesheet"></link>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
