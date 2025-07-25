@@ -9,7 +9,7 @@ function Dashboard () {
     <div className="dashboard-container">
       <div className="left-container">
         <CurrentlyReading />
-        <PickBook />
+        {/* <PickBook /> */}
       </div>
       <div className="shelves-dashboard-container">
         <Shelves />

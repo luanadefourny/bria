@@ -40,8 +40,8 @@ async function buildBookObject (book) {
   if (editionKey) editionData = await getBookByEditionKey(editionKey);
   if (worksKey) worksData = await getBookByWorksKey(worksKey);
 
-  // console.log(editionData);
-  // console.log(worksData);
+  console.log('edition book data: ',editionData);
+  console.log('works book data: ', worksData);
 
   const newBook = {
     title: book.title,

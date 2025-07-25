@@ -28,6 +28,13 @@ html body {
   display: flex;
   /* font-family: 'Poppins', sans-serif; */
 }
+button {
+  background-color: #363b16;
+  color: #f5f5f5;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 3px;
+}
 
 /* a {
   font-weight: 500;

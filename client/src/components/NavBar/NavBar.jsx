@@ -1,16 +1,15 @@
 import { Link } from 'react-router';
+import Popup from 'reactjs-popup';
 
-import logo from './../../assets/bria_logo_green.png';
-
+import AddBook from './../AddBook/AddBook';
+import PickBook from '../PickBook/PickBook';
 import SearchBar from './../SearchBar/SearchBar';
 
+import logo from './../../assets/bria_logo_green.png';
 import './NavBar.css';
+import 'reactjs-popup/dist/index.css';
 
 function NavBar () {
-
-  function handleAddBookClick () {
-    
-  }
   return (
     <div className="navBar-container">
       <div className="navbar-logo-navigation-container">
@@ -23,9 +22,26 @@ function NavBar () {
           <Link to="/home" className="navbar-navigation-link">
             <div>home</div>
           </Link>
-          <div className="navbar-navigation-link" onClick={handleAddBookClick}>
-            <div>add book</div>
-          </div>
+          <Popup 
+            trigger={
+              <div className="navbar-navigation-link">
+                <div>pick next book</div>
+              </div>
+            }
+            modal
+          >
+            <PickBook />
+          </Popup>
+          <Popup 
+            trigger={
+              <div className="navbar-navigation-link">
+                <div>add book</div>
+              </div>
+            }
+            modal
+          >
+            <AddBook />
+          </Popup>
         </div>
       </div>
       <div className="navbar-search-container">
