@@ -30,7 +30,7 @@ const bookSchema = new mongoose.Schema({
   },
   cover: {
     type: Number,
-    require: false,
+    required: false,
   },
   publishedDate: {
     type: Date,
