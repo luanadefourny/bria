@@ -7,14 +7,31 @@
   /* width: 60vw;
   height: 40vh; */
   align-items: center;
+  justify-content: space-around;
+}
+.addbook-title-mode-button {
+  border: blue dotted 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0 2rem 0;
+  gap: 2rem;
 }
 .addbook-title {
-  padding: 2rem 0 2rem 0;
+  /* padding: 2rem 0 2rem 0; */
 }
 .addbook-mode-button-container {
   display: flex;
   width: 50%;
   justify-content: space-evenly;
+}
+.addbook-mode-container {
+  border: blue dotted 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 .addbook-form-container  {
   display: flex;

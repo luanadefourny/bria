@@ -3,14 +3,66 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   width: 100%;
   height: 40vh;
 }
-.pickbook-title {
+.pickbook-title-mode-button {
+  border: blue dotted 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   padding: 2rem 0 2rem 0;
+  gap: 2rem;
+}
+.pickbook-title {
+  /* padding: 2rem 0 2rem 0; */
 }
 .pickbook-mode-button-container {
   display: flex;
   width: 50%;
   justify-content: space-evenly;
+}
+.pickbook-mode-container {
+  border: blue dotted 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.pickbook-form-container  {
+  display: flex;
+  flex-direction: column;
+  /* border: green dotted 2px; */
+  width: 70%;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+.pickbook-form-input-container {
+  display: flex;
+  gap: 0.5rem;
+  /* border: red dotted 2px; */
+  width: 100%;
+  /* height: 1.5rem; */
+}
+.form-input-label {
+  width:40%;
+}
+.form-input-input {
+  width:60%;
+}
+.form-input-range {
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-between;
+  width: 60%;
+}
+.form-input-radio {
+  display: flex;
+  align-self: flex-end;
+  justify-content: flex-start;
+  gap: 0.7rem;
+  width: 60%;
 }
