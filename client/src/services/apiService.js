@@ -39,7 +39,9 @@ async function getBooksBySearch (searchString) {
  * @throws {Error} If the fetch fails or no data is returned
  */
 async function getBookByIsbn (isbn) {
+  console.log('in getbookbyisbn');
   const res = await fetch(`${searchUrl}?isbn=${isbn}`);
+  console.log(res);
   if (res.ok) {
     const data = await res.json();
     return data;
