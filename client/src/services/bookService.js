@@ -1,11 +1,11 @@
 'use strict';
 
-import { getBookByEditionKey, getBookByWorksKey } from "./apiService";
+import { getBookByEditionKey, getBookByWorksKey, getBookByIsbn } from "./apiService";
 
 const localUrl = 'http://localhost:3000';
 
 async function postBook (bookData) {
-  console.log(bookData);
+  console.log('bookData in postbook in bookservice: ',bookData);
   const book = await buildBookObject(bookData);
   console.log('book: ',book);
   const res = await fetch(`${localUrl}/add-book`, {
@@ -38,6 +38,7 @@ async function buildBookObject (book) {
   let editionData = {};
   let worksData = {};
 
+  
   if (editionKey) {
     try {
       editionData = await getBookByEditionKey(editionKey);
@@ -52,6 +53,38 @@ async function buildBookObject (book) {
       console.log(error);
     }
   }
+  
+  if (book.isbn && !editionKey) {
+    try {
+      const searchResults = await getBookByIsbn(book.isbn);
+      if (searchResults.numFoundExact) {
+        const foundBook = searchResults.docs[0];
+        book = { ...foundBook, ...book };
+
+        const newEditionKey = foundBook.cover_edition_key;
+        const newWorksKey = foundBook.key?.split('/').pop();
+
+        if (newEditionKey) {
+          try {
+            editionData = await getBookByEditionKey(newEditionKey);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+
+        if (newWorksKey) {
+          try {
+            worksData = await getBookByWorksKey(newWorksKey);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   console.log('edition book data: ',editionData);
   console.log('works book data: ', worksData);
 
@@ -68,11 +101,12 @@ async function buildBookObject (book) {
       : null);
   console.log('cover: ',book.cover_i || null);
 
+  const isbn = editionData.isbn_13?.[0] || editionData.isbn_10?.[0]
 
   const newBook = {
     title: book.title,
     authors: book.author_name || book.authors,
-    isbn: editionData.isbn_13?.[0] || editionData.isbn_10?.[0] || '',
+    // isbn: editionData.isbn_13?.[0] || editionData.isbn_10?.[0] || book.isbn?.trim() || undefined,
     editionKey: editionKey || '',
     worksKey: worksKey || '',
     pages: editionData.number_of_pages || null,
@@ -81,7 +115,19 @@ async function buildBookObject (book) {
       ? new Date(`${book.first_publish_year}-01-01`)
       : null,
     cover: book.cover_i || null,
+    userData: book.userData,
   }
+
+  if (isbn) {
+    newBook.isbn = isbn;
+  } else {
+    if (book.isbn?.trim()) {
+      newBook.isbn = book.isbn.trim();
+    } else {
+      delete newBook.isbn;
+    }
+  }
+
   console.log('newBook: ',newBook);
   return newBook;
 }

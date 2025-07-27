@@ -4,7 +4,7 @@ require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') }
 const mongoose = require('mongoose');
 
 const DB_PORT = process.env.DB_PORT || 27017;
-const DB_NAME = process.env.DB_NAME || 'bria';
+const DB_NAME = process.env.DB_NAME || 'bria'; //TODO: change in .env, currently using mockBria
 
 (async() => {
   try {
