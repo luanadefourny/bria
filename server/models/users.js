@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('./../db.js');
+// const mongoose = require('mongoose'); //only for seeding mock data
 
 const userSchema = new mongoose.Schema({
   username: {

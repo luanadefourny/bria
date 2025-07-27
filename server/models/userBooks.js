@@ -1,6 +1,7 @@
 'use strict';
 
 const mongoose = require('../db.js');
+// const mongoose = require('mongoose'); //only for seeding mock data
 
 const userBookSchema = new mongoose.Schema({
   userId: {
@@ -59,6 +60,14 @@ const userBookSchema = new mongoose.Schema({
       'read',
     ],
     default: 'not reading',
+  },
+  format: {
+    type: [{
+      type: String,
+      enum: ['physical', 'kindle', 'audiobook']
+    }],
+    default: [],
+    required: false,
   }
 });
 
