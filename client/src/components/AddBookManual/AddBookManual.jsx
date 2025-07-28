@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './../AddBook/AddBook.css';
 import { postBook } from '../../services/bookService';
 
-function AddBookManual () {
+function AddBookManual ({ books, setBooks }) {
 
   const [title, setTitle] = useState('');
   const [authors, setAuthors] = useState([]);

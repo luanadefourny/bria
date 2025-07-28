@@ -114,6 +114,15 @@ async function buildBookObject (book) {
 
   const isbn = editionData.isbn_13?.[0] || editionData.isbn_10?.[0]
 
+  if (!book.userData) {
+    console.log('no user data');
+    //build empty user data if added not manually
+    book.userData = {
+      format: [''],
+      shelfIds: ['64a0c0b0c3f8fa2d1e4c0011', ' 64a0c0b0c3f8fa2d1e4c0002']
+    }
+  }
+
   const newBook = {
     title: book.title,
     authors: book.author_name || book.authors,

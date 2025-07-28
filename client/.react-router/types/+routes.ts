@@ -18,33 +18,15 @@ type Pages = {
       "*": string;
     };
   };
-  "/home": {
-    params: {};
-  };
-  "/library": {
-    params: {};
-  };
 };
 
 type RouteFiles = {
   "root.jsx": {
     id: "root";
-    page: "/" | "/*" | "/home" | "/library";
+    page: "/" | "/*";
   };
   "catchall.jsx": {
     id: "catchall";
     page: "/" | "/*";
-  };
-  "./components/WelcomePage/WelcomePage.jsx": {
-    id: "components/WelcomePage/WelcomePage";
-    page: "/";
-  };
-  "./components/Home/Home.jsx": {
-    id: "components/Home/Home";
-    page: "/home";
-  };
-  "./components/Library/Library.jsx": {
-    id: "components/Library/Library";
-    page: "/library";
   };
 };

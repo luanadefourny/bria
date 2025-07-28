@@ -3,7 +3,7 @@ import './../AddBook/AddBook.css';
 import { getBookByIsbn } from '../../services/apiService';
 import { postBook } from '../../services/bookService';
 
-function AddBookIsbn () {
+function AddBookIsbn ({ books, setBooks }) {
 
   const [isbn, setIsbn] = useState('');
   // const [status, setStatus] = useState('');

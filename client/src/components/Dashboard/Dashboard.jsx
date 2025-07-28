@@ -5,21 +5,21 @@ import { getUserBooks } from '../../services/bookService.js';
 import './Dashboard.css';
 import { useEffect, useState } from 'react';
 
-function Dashboard () {
+function Dashboard ({ books }) {
 
-  const [books, setBooks] = useState([]); //essentially this needs to be the "All" bookshelf
+  // const [books, setBooks] = useState([]); //essentially this needs to be the "All" bookshelf
 
-  useEffect(() => {
-    async function fetchUserBooks () {
-      try {
-        const userBooks = await getUserBooks(); 
-        setBooks(userBooks);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchUserBooks();
-  }, [])
+  // useEffect(() => {
+  //   async function fetchUserBooks () {
+  //     try {
+  //       const userBooks = await getUserBooks(); 
+  //       setBooks(userBooks);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   fetchUserBooks();
+  // }, [])
 
   return (
     <div className="dashboard-container">

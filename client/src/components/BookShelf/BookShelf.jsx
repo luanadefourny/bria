@@ -1,7 +1,7 @@
 import './BookShelf.css';
 import Book from '../Book/Book';
 
-function BookShelf ({ title, books}) {
+function BookShelf ({ title, books }) {
   return (
     <div className="bookShelf-container">
       <div className="bookshelf-title">{title}</div>

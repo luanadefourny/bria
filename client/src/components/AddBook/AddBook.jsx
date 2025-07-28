@@ -6,7 +6,7 @@ import './AddBook.css';
 import AddBookIsbn from '../AddBookIsbn/AddBookIsbn';
 import AddBookManual from '../AddBookManual/AddBookManual';
 
-function AddBook () {
+function AddBook ({ books, setBooks }) {
 
   const [mode, setMode] = useState(null);
 
@@ -24,15 +24,15 @@ function AddBook () {
 
       <div className="addbook-mode-container">
         {mode === 'search' && (
-          <SearchBar />
+          <SearchBar books={ books } setBokos={ setBooks } />
         )}
 
         {mode === 'isbn' && (
-          <AddBookIsbn />
+          <AddBookIsbn books={ books } setBokos={ setBooks } />
         )}
 
         {mode === 'manual' && (
-          <AddBookManual />
+          <AddBookManual books={ books } setBokos={ setBooks } />
         )}
       </div>
     </div>

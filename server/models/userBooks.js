@@ -64,9 +64,9 @@ const userBookSchema = new mongoose.Schema({
   format: {
     type: [{
       type: String,
-      enum: ['physical', 'kindle', 'audiobook']
+      enum: ['', 'physical', 'kindle', 'audiobook']
     }],
-    default: [],
+    default: [''],
     required: false,
   }
 });

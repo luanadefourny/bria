@@ -3,7 +3,7 @@ import './SearchBar.css';
 import { getBookCover, getBooksBySearch } from '../../services/apiService.js';
 import { postBook } from '../../services/bookService.js';
 
-function SearchBar () {
+function SearchBar ({ books, setBooks }) {
   const [searchString, setSearchString] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const containerRef = useRef(null);
@@ -28,7 +28,8 @@ function SearchBar () {
   async function handleSearchAddClick (book) {
     try {
       const newBook = await postBook(book);
-      console.log('Book added successfulle: ', newBook);
+      setBooks(oldBooks => [...oldBooks, newBook])
+      console.log('Book added successfully: ', newBook);
     } catch (error) {
       console.log('Failed to add book: ', error);
     }
