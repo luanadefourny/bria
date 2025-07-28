@@ -1,8 +1,22 @@
 import './../PickBook/PickBook.css';
 
-function PickBookToBuy (amount, setAmount, length, setLength, genre, setGenre) {
+function PickBookToBuy ({getRandomBooks, books, setBooks, wantShelfId, amount, setAmount, length, setLength}) {
+  
+  function handleSubmit (e) {
+    e.preventDefault();
+    console.log('amount: ', amount);
+
+    const filteredLengthBooks = books.filter(book => {
+      if (length === 1) return book.bookId.pages < 250;
+      if (length === 2) return book.bookId.pages >= 250 && book.bookId.pages <= 450;
+      if (length === 3) return book.bookId.pages > 450;
+    });
+    const pickedBooks = getRandomBooks(filteredLengthBooks, amount);
+    console.log(pickedBooks);
+  }
+  
   return (
-    <form className="pickbook-form-container">
+    <form className="pickbook-form-container" onSubmit={handleSubmit}>
       <div className="pickbook-form-input-container">
         <label className="form-input-label">how many picks would you like?</label>
         <input 
@@ -11,7 +25,7 @@ function PickBookToBuy (amount, setAmount, length, setLength, genre, setGenre) {
           min="1"
           max="3"
           value={amount}
-          onChange={(e) => setAmount(e.target.value)}></input>
+          onChange={(e) => setAmount(Number(e.target.value))}></input>
       </div>
       <div className="form-input-range">
         <span>1</span>
@@ -26,25 +40,12 @@ function PickBookToBuy (amount, setAmount, length, setLength, genre, setGenre) {
           min="1"
           max="3"
           value={length}
-          onChange={(e) => setLength(e.target.value)}></input>
+          onChange={(e) => setLength(Number(e.target.value))}></input>
       </div>
       <div className="form-input-range">
         <span>Short</span>
         <span>Medium</span>
         <span>Long</span>
-      </div>
-      <div className="pickbook-form-input-container">
-        <label className="form-input-label">genre (only if book has tags)</label>
-        <select value={genre} onChange={(e) => setGenre(e.target.value)}>
-          //TODO: make this display dynamically based on tags (maybe need to add a tags collection)
-          {/* will hardcode for the moment */}
-          <option value="">choose genre</option>
-          <option value="fantasy">fantasy</option>
-          <option value="sci-fi">sci-fi</option>
-          <option value="thriller">thriller</option>
-          <option value="memoir/autobiography/biography">memoir/autobiography/biography</option>
-          <option value="psychology">psychology</option>
-        </select>
       </div>
       <button type="submit">pick</button>
     </form>
@@ -52,3 +53,17 @@ function PickBookToBuy (amount, setAmount, length, setLength, genre, setGenre) {
 }
 
 export default PickBookToBuy;
+
+// <div className="pickbook-form-input-container">
+//   <label className="form-input-label">genre (only if book has tags)</label>
+//   <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+//     //TODO: make this display dynamically based on tags (maybe need to add a tags collection)
+//     {/* will hardcode for the moment */}
+//     <option value="">choose genre</option>
+//     <option value="fantasy">fantasy</option>
+//     <option value="sci-fi">sci-fi</option>
+//     <option value="thriller">thriller</option>
+//     <option value="memoir/autobiography/biography">memoir/autobiography/biography</option>
+//     <option value="psychology">psychology</option>
+//   </select>
+// </div>

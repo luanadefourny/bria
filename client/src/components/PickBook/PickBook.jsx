@@ -4,14 +4,19 @@ import './PickBook.css';
 import PickBookToRead from '../PickBookToRead/PickBookToRead';
 import PickBookToBuy from '../PickBookToBuy/PickBookToBuy';
 
-function PickBook () {
+// const allShelfId = '64a0c0b0c3f8fa2d1e4c0011';
+const readShelfId = '64a0c0b0c3f8fa2d1e4c0001';
+const wantShelfId = '64a0c0b0c3f8fa2d1e4c0002';
+const ownedShelfId = '64a0c0b0c3f8fa2d1e4c0003';
+
+function PickBook ({ books, setBooks }) {
 
   const [mode, setMode] = useState(null);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(1);
   const [reRead, setReRead] = useState('');
-  const [length, setLength] = useState(0);
+  const [length, setLength] = useState(1);
   const [format, setFormat] = useState('');
-  const [genre, setGenre] = useState('');
+  const [genre, setGenre] = useState(''); //TODO: these aren't in the database right now
   
   return (
     <div className="pickBook-container">
@@ -28,6 +33,10 @@ function PickBook () {
         {/* picks your next book to read from one you own (maybe also one you've read already) */}
         {mode === 'read' && (
           <PickBookToRead 
+            books={books}
+            setBooks={setBooks}
+            readShelfId={readShelfId}
+            ownedShelfId={ownedShelfId}
             amount={amount}
             setAmount={setAmount}
             reRead={reRead}
@@ -36,19 +45,20 @@ function PickBook () {
             setLength={setLength}
             format={format}
             setFormat={setFormat}
-            genre={genre}
-            setGenre={setGenre} />
+            getRandomBooks={getRandomBooks} />
         )}
 
         {/* picks your next book to buy from the to get to shelf */}
         {mode === 'buy' && (
           <PickBookToBuy 
+            books={books}
+            setBooks={setBooks}
+            wantShelfId={wantShelfId}
             amount={amount}
             setAmount={setAmount}
             length={length}
             setLength={setLength}
-            genre={genre}
-            setGenre={setGenre} />
+            getRandomBooks={getRandomBooks} />
         )}
       </div>
     </div>
@@ -56,3 +66,10 @@ function PickBook () {
 };
 
 export default PickBook;
+
+function getRandomBooks (books, amount) {
+  const shuffledBooks = [...books].sort(() => 0.5 - Math.random());
+  console.log(shuffledBooks);
+  console.log(Number(amount));
+  return shuffledBooks.slice(0, Number(amount));
+}

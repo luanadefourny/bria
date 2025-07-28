@@ -9,11 +9,13 @@ function Book ({ book, type }) {
           <img src={getBookCover(book.bookId.cover, 'M')} alt={`cover of ${book.bookId.title}`} />
         </div>
       )}
-      {type === 'library' && (
-        <div className="book-details-library-container">
-          <img src={getBookCover(book.bookId.cover, 'M')} alt={`cover of ${book.bookId.title}`} />
-          <div>{book.bookId.title}</div>
-          <div>{book.bookId.authors?.join(', ')}</div>
+      {type === 'library-popup' && (
+        <div className="book-library-container">
+          <img className="book-library-cover-container" src={getBookCover(book.bookId.cover, 'M')} alt={`cover of ${book.bookId.title}`} />
+          <div className="book-library-details-container">
+            <div>{book.bookId.title}</div>
+            <div>{book.bookId.authors?.join(', ')}</div>
+          </div>
         </div>
       )}
     </div>

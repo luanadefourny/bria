@@ -31,7 +31,7 @@ function AddBookManual ({ books, setBooks }) {
     //   const newBook = await postBook(bookData)
       const bookToSubmit = {
         title,
-        authors,
+        authors: authors.split(', ').map(str => str.trim()),
         isbn: isbn.trim() === '' ? undefined : isbn.trim(),
         pages,
         userData: { format }
@@ -56,8 +56,7 @@ function AddBookManual ({ books, setBooks }) {
     setTitle(str);
   }
   function handleAuthorsChange (e) {
-    // const arr = e.target.value;
-    const arr = e.target.value.split(',').map(str => str.trim());
+    const arr = e.target.value;
     setAuthors(arr);
   }
   function handleIsbnChange (e) {
@@ -116,19 +115,6 @@ function AddBookManual ({ books, setBooks }) {
           value={pages}
           onChange={handlePagesChange} />
       </div>
-      {/* <div className="addbook-form-input-container">
-        <label className="form-input-label">format (only if owned)</label>
-        <select 
-          className="form-input-input" 
-          multiple
-          // placeholder="format"
-          value={format}
-          onChange={handleFormatChange} >
-            <option value="physical">physical</option>
-            <option value="kindle">kindle</option>
-            <option value="audiobook">audiobook</option>
-        </select>
-      </div> */}
       <div className="addbook-form-input-container">
         <label className="form-input-label">format (only if owned)</label>
         <div className="checkbox-group">
@@ -152,10 +138,6 @@ function AddBookManual ({ books, setBooks }) {
           ))}
         </div>
       </div>
-      {/* <div className="addbook-form-input-container">
-        <label className="form-input-label"></label>
-        <input className="form-input-input" />
-      </div> */}
       <button type="submit">Add</button>
     </form>
   );

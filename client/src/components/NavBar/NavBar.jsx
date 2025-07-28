@@ -33,7 +33,7 @@ function NavBar ({ books, setBooks }) {
             }
             modal
           >
-            <PickBook />
+            <PickBook books={ books } setBooks={ setBooks } />
           </Popup>
           <Popup 
             trigger={
