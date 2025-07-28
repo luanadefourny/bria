@@ -4,5 +4,6 @@ export default [
   // * matches all URLs, the ? makes it optional so it will match / as well
   route('*?', 'catchall.jsx'),
   route('/', './components/WelcomePage/WelcomePage.jsx'),
-  route('/home', './components/Home/Home.jsx')
+  route('/home', './components/Home/Home.jsx'),
+  route('/library', './components/Library/Library.jsx'),
 ];

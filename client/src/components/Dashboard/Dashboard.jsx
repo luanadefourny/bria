@@ -1,18 +1,33 @@
 import CurrentlyReading from './../CurrentlyReading/CurrentlyReading';
 import Shelves from './../Shelves/Shelves';
-import PickBook from './../PickBook/PickBook';
+import { getUserBooks } from '../../services/bookService.js';
 
 import './Dashboard.css';
+import { useEffect, useState } from 'react';
 
 function Dashboard () {
+
+  const [books, setBooks] = useState([]); //essentially this needs to be the "All" bookshelf
+
+  useEffect(() => {
+    async function fetchUserBooks () {
+      try {
+        const userBooks = await getUserBooks(); 
+        setBooks(userBooks);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchUserBooks();
+  }, [])
+
   return (
     <div className="dashboard-container">
       <div className="left-container">
         <CurrentlyReading />
-        {/* <PickBook /> */}
       </div>
       <div className="shelves-dashboard-container">
-        <Shelves />
+        <Shelves books={ books }/>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ async function postBook (bookData) {
   console.log('bookData in postbook in bookservice: ',bookData);
   const book = await buildBookObject(bookData);
   console.log('book: ',book);
-  const res = await fetch(`${localUrl}/add-book`, {
+  const res = await fetch(`${localUrl}/books`, {
     method: 'POST',
     body: JSON.stringify(book),
     headers: {'Content-Type': 'application/json'}
@@ -25,7 +25,18 @@ async function postBook (bookData) {
   }
 }
 
-export { postBook };
+async function getUserBooks () {
+  const res = await fetch(`${localUrl}/books`);
+  console.log(res);
+  if (res.ok) {
+    const data = await res.json();
+    return data;
+  } else {
+    throw new Error('There was an error fetching the data - GetBooks')
+  }
+}
+
+export { postBook, getUserBooks };
 
 //helper function to get additional book data and rebuild book object
 async function buildBookObject (book) {

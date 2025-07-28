@@ -1,3 +1,16 @@
-.bookShelf {
-  /* Styles for BookShelf */
+.bookShelf-container {
+  /* border: green dotted 5px; */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.bookshelf-title {
+  padding-top: 2rem;
+  font-size: 2rem;
+  align-self: center;
+  font-weight: bold;
+}
+.book-list {
+  display: flex;
+  overflow-y: auto;
 }

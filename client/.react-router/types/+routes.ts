@@ -21,12 +21,15 @@ type Pages = {
   "/home": {
     params: {};
   };
+  "/library": {
+    params: {};
+  };
 };
 
 type RouteFiles = {
   "root.jsx": {
     id: "root";
-    page: "/" | "/*" | "/home";
+    page: "/" | "/*" | "/home" | "/library";
   };
   "catchall.jsx": {
     id: "catchall";
@@ -39,5 +42,9 @@ type RouteFiles = {
   "./components/Home/Home.jsx": {
     id: "components/Home/Home";
     page: "/home";
+  };
+  "./components/Library/Library.jsx": {
+    id: "components/Library/Library";
+    page: "/library";
   };
 };

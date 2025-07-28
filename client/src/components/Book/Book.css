@@ -1,3 +1,8 @@
-.book {
-  /* Styles for Book */
+.book-shelf-container {
+  /* display: flex; */
+  
+  /* border: red solid 2px; */
+}
+.book-library-container {
+  border: blue solid 2px;
 }

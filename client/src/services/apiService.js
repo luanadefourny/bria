@@ -4,6 +4,8 @@ const searchUrl = 'https://openlibrary.org/search.json';
 const worksUrl = 'https://openlibrary.org/works';
 const editionUrl = 'https://openlibrary.org/books';
 
+const coverUrl = ''
+
 const isbn_ProjectHailMary = '9781529157468';
 const isbn_ACourtOfSilverFlames = '9781526635365';
 /**
@@ -89,4 +91,9 @@ async function getBookByWorksKey (key) {
 
 }
 
-export { getBooksBySearch, getBookByIsbn, getBookByEditionKey, getBookByWorksKey };
+function getBookCover (coverId, size) {
+  if (!coverId) return null;
+  return `https://covers.openlibrary.org/b/id/${coverId}-${size}.jpg`;
+}
+
+export { getBooksBySearch, getBookByIsbn, getBookByEditionKey, getBookByWorksKey, getBookCover };

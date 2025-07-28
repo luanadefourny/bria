@@ -22,6 +22,9 @@ function NavBar () {
           <Link to="/home" className="navbar-navigation-link">
             <div>home</div>
           </Link>
+          <Link to="/library" className="navbar-navigation-link">
+            <div>library</div>
+          </Link>
           <Popup 
             trigger={
               <div className="navbar-navigation-link">

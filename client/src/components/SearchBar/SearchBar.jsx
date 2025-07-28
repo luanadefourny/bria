@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import './SearchBar.css';
-import { getBooksBySearch } from '../../services/apiService.js';
+import { getBookCover, getBooksBySearch } from '../../services/apiService.js';
 import { postBook } from '../../services/bookService.js';
 
 function SearchBar () {
@@ -13,6 +13,10 @@ function SearchBar () {
     const newSearch = await getBooksBySearch(searchString); // returns array of books from search string
     // console.log(newSearch);
     setSearchResults(newSearch);
+    searchResults.map((book, index)=>{
+      const cover = getBookCover(book.cover_i, 'S')
+      console.log(cover);
+    })
     setSearchString('');
   }
 
@@ -63,7 +67,8 @@ function SearchBar () {
               <div className="search-result-item-book-details">
                 {book.cover_i && (
                 <img 
-                  src={`https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`} 
+                  // src={`https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`} 
+                  src={getBookCover(book.cover_i, 'S')} 
                   alt={`Cover of ${book.title}`} 
                   className="search-result-cover"
                 />
