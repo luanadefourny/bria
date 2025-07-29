@@ -76,10 +76,16 @@ async function updateUserBookProgress (req, res) {
     res.json(error);
   }
 }
-async function deleteUserBook (req, res) {
-  const {bookId } = req.params;
+
+async function updateUserBookFormat (req, res) {
+  const { bookId } = req.params;
+  const { format } = req.body;
+  console.log(bookId);
+  console.log('full req.bod format: ', req.body);
+  console.log(format);
   try {
-    const bookToDelete = await UserBook;
+    const updatedBook = await UserBook.findByIdAndUpdate(bookId, { format }, {new: true});
+    res.status(200).json(updatedBook);
   } catch (error) {
     console.log(error);
     res.status(500);
@@ -87,10 +93,22 @@ async function deleteUserBook (req, res) {
   }
 }
 
+// async function deleteUserBook (req, res) {
+//   const {bookId } = req.params;
+//   try {
+//     const bookToDelete = await UserBook;
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500);
+//     res.json(error);
+//   }
+// }
+
 module.exports = { 
   getUserBooks, 
   updateUserBookStatus, 
   updateUserBookOwned, 
   updateUserBookFavorite, 
-  updateUserBookProgress 
+  updateUserBookProgress,
+  updateUserBookFormat,
 };

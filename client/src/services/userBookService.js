@@ -59,9 +59,24 @@ async function updateFavorite (bookId, favorite) {
   }
 }
 
+async function updateFormat (bookId, format) {
+  const res = await fetch(`${url}/userbooks/${bookId}/format`, {
+    method: "PUT",
+    body: JSON.stringify({ format }),
+    headers: { "Content-Type": "application/json" }
+  });
+  if (res.ok) {
+    const data = await res.json(data);
+    return data;
+  } else {
+    throw new Error('There was an error fetching the data - updateFormat');
+  }
+}
+
 export { 
   updateProgress, 
   updateStatus, 
   updateOwned, 
-  updateFavorite 
+  updateFavorite,
+  updateFormat,
 };

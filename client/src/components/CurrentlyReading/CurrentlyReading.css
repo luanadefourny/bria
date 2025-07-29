@@ -8,6 +8,7 @@
   border-radius: 8px;
   padding: 0 1.5rem 1.5rem 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+
 }
 .currentlyReading-title {
   padding-top: 2rem;
@@ -20,5 +21,4 @@
 }
 .currentlyReading-book-container {
   width:fit-content;
-
 }

@@ -1,7 +1,7 @@
 import './BookPopup.css';
 import { getBookCover } from '../../services/apiService';
 import { useState, useEffect } from 'react';
-import { updateStatus, updateOwned, updateFavorite, updateProgress } from '../../services/userBookService';
+import { updateStatus, updateOwned, updateFavorite, updateProgress, updateFormat } from '../../services/userBookService';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -23,9 +23,9 @@ function BookPopup ({ book, setBooks }) {
     setBooks(prev => 
       prev.map(item => 
         item._id === book._id 
-        ? { ...item, status, owned, favorite, progress: currentPage } 
+        ? { ...item, status, owned, favorite, progress: currentPage, format: Array.from(formats) } 
         : item))
-  }, [status, owned, favorite, currentPage])
+  }, [status, owned, favorite, currentPage, formats])
 
   useEffect(() => {
     updateStatus(book._id, status);
@@ -39,10 +39,20 @@ function BookPopup ({ book, setBooks }) {
   useEffect(() => {
     updateProgress(book._id, currentPage);
   }, [currentPage])
+  useEffect(() => {
+    updateFormat(book._id, Array.from(formats))
+  }, [Array.from(formats).sort().join(',')])
 
   const toggleFormat = (fmt) => {
     const newFormats = new Set(formats);
     newFormats.has(fmt) ? newFormats.delete(fmt) : newFormats.add(fmt);
+
+    if (newFormats.size === 0) {
+      newFormats.add('');
+    } else {
+      newFormats.delete('');
+    }    
+
     setFormats(newFormats);
   };
 
