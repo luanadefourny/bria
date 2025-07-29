@@ -89,7 +89,7 @@ function AddBookManual ({ books, setBooks }) {
           onChange={handleTitleChange} />
       </div>
       <div className="addbook-form-input-container">
-        <label className="form-input-label">author</label>
+        <label className="form-input-label">author(s)</label>
         <input 
           className="form-input-input" 
           type="text" 

@@ -1,4 +1,5 @@
 import { getBookCover } from '../../services/apiService';
+import BookPopup from '../BookPopup/BookPopup';
 import './Book.css';
 
 function Book ({ book, type }) {
@@ -15,16 +16,8 @@ function Book ({ book, type }) {
         </div>
       )}
 
-      {type === 'shelf-popup'}
-
       {type === 'library-popup' && (
-        <div className="book-library-container">
-          <img className="book-library-cover-container" src={getBookCover(book.bookId.cover, 'M')} alt={`cover of ${book.bookId.title}`} />
-          <div className="book-library-details-container">
-            <div>{book.bookId.title}</div>
-            <div>{book.bookId.authors?.join(', ')}</div>
-          </div>
-        </div>
+        <BookPopup book={ book }/>
       )}
 
       {type === 'pick' && (
