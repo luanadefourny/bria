@@ -1,13 +1,20 @@
 import NavBar from './../NavBar/NavBar';
-import Dashboard from './../Dashboard/Dashboard';
+// import Dashboard from '../../../Dashboard/Dashboard';
 import Library from '../Library/Library';
+import CurrentlyReading from '../CurrentlyReading/CurrentlyReading';
+import Shelves from '../Shelves/Shelves';
 
 import './Home.css';
 
-function Home ({ books, setBooks}) {
+function Home ({ books, setBooks }) {
   return (
-    <div className="home-containter">
-      <Dashboard books={ books } />
+    <div className="home-container">
+      <div className="left-container">
+        <CurrentlyReading />
+      </div>
+      <div className="shelves-home-container">
+        <Shelves books={ books }/>
+      </div>
     </div>
   );
 };

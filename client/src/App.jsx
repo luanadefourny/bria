@@ -27,7 +27,7 @@ function App() {
     <Routes>
       <Route path="/" element={<WelcomePage />}></Route>
       <Route path="/home" element={
-                            <Layout>
+                            <Layout books={books} setBooks={setBooks}>
                               <Home 
                                 books={ books } 
                                 setBooks={ setBooks }
@@ -36,7 +36,7 @@ function App() {
       }>
       </Route>
       <Route path="/library" element={
-                                <Layout>
+                                <Layout books={books} setBooks={setBooks}>
                                   <Library books={ books } setBooks={ setBooks } />
                                 </Layout>}>
       </Route>

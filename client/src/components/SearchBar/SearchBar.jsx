@@ -28,7 +28,7 @@ function SearchBar ({ books, setBooks }) {
   async function handleSearchAddClick (book) {
     try {
       const newBook = await postBook(book);
-      setBooks(oldBooks => [...oldBooks, newBook])
+      setBooks(oldBooks => [...oldBooks, newBook]);
       console.log('Book added successfully: ', newBook);
     } catch (error) {
       console.log('Failed to add book: ', error);

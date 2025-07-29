@@ -4,39 +4,7 @@ function PickBookToRead ({getRandomBooks, books, setBooks, readShelfId, ownedShe
   
   function handleSubmit (e) {
     e.preventDefault();
-    // console.log(books);
-    console.log('amount: ', amount);
-    console.log('length: ', length);
-    console.log(typeof amount);
-
-    //first filter based on reread
-    const filteredReReadBooks = books.filter(book => {
-      if (reRead === 'no') {
-        // only from ownedShelfId
-        return book.shelfIds.includes(ownedShelfId);
-      } else if (reRead === 'yes') {
-        // only from readShelfId
-        return book.shelfIds.includes(readShelfId);
-      } else if (reRead === "don't care") {
-        // from either shelf
-        return book.shelfIds.includes(ownedShelfId) || book.shelfIds.includes(readShelfId);
-      }
-    });
-    console.log(filteredReReadBooks);
-    //second filter based on format
-    const filteredFormatBooks = filteredReReadBooks.filter(book => {
-      return book.format.includes(format);
-    });
-    console.log(filteredFormatBooks);
-    //third filter based on length
-    const filteredLengthBooks = filteredFormatBooks.filter(book => {
-      if (length === 1) return book.bookId.pages < 250;
-      if (length === 2) return book.bookId.pages >= 250 && book.bookId.pages <= 450;
-      if (length === 3) return book.bookId.pages > 450;
-    });
-    console.log(filteredLengthBooks);
-    //return a specific number of books to choose from based on amount
-    const pickedBooks = getRandomBooks(filteredLengthBooks, amount);
+    const pickedBooks = pickBooks(books, reRead, format, length, amount, ownedShelfId, readShelfId, getRandomBooks);
     console.log(pickedBooks);
   }
   
@@ -164,3 +132,34 @@ export default PickBookToRead;
 // </div>
 
 
+function pickBooks (books, reRead, format, length, amount, ownedShelfId, readShelfId, getRandomBooks) {
+  //first filter based on reread
+  const filteredReReadBooks = books.filter(book => {
+    if (reRead === 'no') {
+      // only from ownedShelfId
+      return book.shelfIds.includes(ownedShelfId);
+    } else if (reRead === 'yes') {
+      // only from readShelfId
+      return book.shelfIds.includes(readShelfId);
+    } else if (reRead === "don't care") {
+      // from either shelf
+      return book.shelfIds.includes(ownedShelfId) || book.shelfIds.includes(readShelfId);
+    }
+  });
+  // console.log(filteredReReadBooks);
+  //second filter based on format
+  const filteredFormatBooks = filteredReReadBooks.filter(book => {
+    return book.format.includes(format);
+  });
+  // console.log(filteredFormatBooks);
+  //third filter based on length
+  const filteredLengthBooks = filteredFormatBooks.filter(book => {
+    if (length === 1) return book.bookId.pages < 250;
+    if (length === 2) return book.bookId.pages >= 250 && book.bookId.pages <= 450;
+    if (length === 3) return book.bookId.pages > 450;
+  });
+  // console.log(filteredLengthBooks);
+  //return a specific number of books to choose from based on amount
+  const pickedBooks = getRandomBooks(filteredLengthBooks, amount);
+  return pickedBooks;
+}

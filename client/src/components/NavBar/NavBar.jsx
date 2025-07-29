@@ -48,7 +48,7 @@ function NavBar ({ books, setBooks }) {
         </div>
       </div>
       <div className="navbar-search-container">
-        <SearchBar books={ books } setBooks={ setBooks  } />
+        <SearchBar books={ books } setBooks={ setBooks } />
       </div>
     </div>
   );

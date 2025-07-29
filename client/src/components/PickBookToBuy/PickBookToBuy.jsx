@@ -4,14 +4,7 @@ function PickBookToBuy ({getRandomBooks, books, setBooks, wantShelfId, amount, s
   
   function handleSubmit (e) {
     e.preventDefault();
-    console.log('amount: ', amount);
-
-    const filteredLengthBooks = books.filter(book => {
-      if (length === 1) return book.bookId.pages < 250;
-      if (length === 2) return book.bookId.pages >= 250 && book.bookId.pages <= 450;
-      if (length === 3) return book.bookId.pages > 450;
-    });
-    const pickedBooks = getRandomBooks(filteredLengthBooks, amount);
+    const pickedBooks = pickBooks(books, length, amount, wantShelfId, getRandomBooks);
     console.log(pickedBooks);
   }
   
@@ -67,3 +60,17 @@ export default PickBookToBuy;
 //     <option value="psychology">psychology</option>
 //   </select>
 // </div>
+
+function pickBooks (books, length, amount, wantShelfId, getRandomBooks) {
+  console.log('amount: ', amount);
+  const filteredWantBooks = books.filter(book => {
+    return book.shelfIds.includes(wantShelfId);
+  })
+  const filteredLengthBooks = filteredWantBooks.filter(book => {
+    if (length === 1) return book.bookId.pages < 250;
+    if (length === 2) return book.bookId.pages >= 250 && book.bookId.pages <= 450;
+    if (length === 3) return book.bookId.pages > 450;
+  });
+  const pickedBooks = getRandomBooks(filteredLengthBooks, amount);
+  return pickedBooks;
+}
