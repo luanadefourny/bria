@@ -11,7 +11,7 @@ function Home ({ books, setBooks }) {
     <div className="home-container">
       <div className="home-inner-container">
         <div className="left-container">
-          <CurrentlyReading />
+          <CurrentlyReading books={books} setBooks={setBooks} />
         </div>
         <div className="shelves-home-container">
           <Shelves books={ books } setBooks={setBooks}/>

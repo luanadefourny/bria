@@ -1,4 +1,24 @@
 .currentlyReading-container {
-  border: blue solid 2px;
-  
+  /* border: blue solid 2px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  background-color: #ebebeb;
+  border-radius: 8px;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+.currentlyReading-title {
+  padding-top: 2rem;
+  font-size: 2rem;
+  align-self: center;
+  font-weight: bold;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid;
+}
+.currentlyReading-book-container {
+  width:fit-content;
+
 }
