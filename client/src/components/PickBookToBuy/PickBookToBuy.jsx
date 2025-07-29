@@ -6,6 +6,7 @@ function PickBookToBuy ({getRandomBooks, books, setBooks, wantShelfId, amount, s
     e.preventDefault();
     const pickedBooks = pickBooks(books, length, amount, wantShelfId, getRandomBooks);
     console.log(pickedBooks);
+    //display books
   }
   
   return (

@@ -73,8 +73,12 @@ async function postBook (req, res) {
         format: userData.format
       })
     }
-    console.log(userBook);
-    res.status(201).json({ book, userBook });
+    console.log('userbook in post book books controller: ',userBook);
+
+    //rebuild correctly by fetching the book
+    let bookToSendBack = await UserBook.findOne({ _id: userBook._id }).populate('bookId');
+    console.log('book to send back: ', bookToSendBack);
+    res.status(201).json(bookToSendBack);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Something went wrong when adding to the database - postBook'});
