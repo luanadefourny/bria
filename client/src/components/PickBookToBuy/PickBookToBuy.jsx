@@ -1,12 +1,14 @@
 import './../PickBook/PickBook.css';
 
-function PickBookToBuy ({getRandomBooks, books, setBooks, wantShelfId, amount, setAmount, length, setLength}) {
+function PickBookToBuy ({getRandomBooks, books, setBooks, setBooksPicked, setMode, reset, wantShelfId, amount, setAmount, length, setLength}) {
   
   function handleSubmit (e) {
     e.preventDefault();
     const pickedBooks = pickBooks(books, length, amount, wantShelfId, getRandomBooks);
     console.log(pickedBooks);
-    //display books
+    setBooksPicked(pickedBooks);
+    setMode('picked');
+    reset();
   }
   
   return (

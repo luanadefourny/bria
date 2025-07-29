@@ -1,5 +1,5 @@
 .welcomePage-container {
-  border: orange solid 4px;
+  /* border: orange solid 4px; */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,5 +1,5 @@
 .pickBook-container {
-  border: red solid 2px;
+  /* border: red solid 2px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,7 +8,7 @@
   height: 40vh;
 }
 .pickbook-title-mode-button {
-  border: blue dotted 2px;
+  /* border: blue dotted 2px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,7 +25,7 @@
   justify-content: space-evenly;
 }
 .pickbook-mode-container {
-  border: blue dotted 2px;
+  /* border: blue dotted 2px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -69,4 +69,16 @@
 .form-input-radio-label {
   display: flex;
   gap: 0.4rem;
+}
+.books-picked-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1.5rem;
+  width: 100%;
+}
+.books-picked-covers-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }

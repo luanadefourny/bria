@@ -7,7 +7,7 @@ function BookShelf ({ title, books }) {
       <div className="bookshelf-title">{title}</div>
       <div className="book-list">
         {books.map(userBook => (
-          <Book key={userBook._id} book={ userBook } type="shelf"/>
+          <Book key={userBook._id} book={ userBook } type="shelf" />
           // <div key={userBook._id} className="book">
           //   <p>{userBook.bookId.title}</p>
           // </div>

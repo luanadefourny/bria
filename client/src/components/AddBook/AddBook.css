@@ -10,7 +10,7 @@
   justify-content: space-around;
 }
 .addbook-title-mode-button {
-  border: blue dotted 2px;
+  /* border: blue dotted 2px; */
   display: flex;
   flex-direction: column;
   align-items: center;
