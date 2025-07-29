@@ -9,11 +9,13 @@ import './Home.css';
 function Home ({ books, setBooks }) {
   return (
     <div className="home-container">
-      <div className="left-container">
-        <CurrentlyReading />
-      </div>
-      <div className="shelves-home-container">
-        <Shelves books={ books }/>
+      <div className="home-inner-container">
+        <div className="left-container">
+          <CurrentlyReading />
+        </div>
+        <div className="shelves-home-container">
+          <Shelves books={ books }/>
+        </div>
       </div>
     </div>
   );

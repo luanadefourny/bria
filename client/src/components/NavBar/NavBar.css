@@ -1,11 +1,17 @@
 .navBar-container {
-  display: flex;
   /* border: solid red 2px; */
   /* width: 100vw; */
+  display:flex;
+  justify-content: center;
   width: 100%;
+  background-color: #d6d6d6;
+}
+.navbar-inner-container {
+  width: 70vw;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #d6d6d6;
+
 }
 .navbar-logo {
   width: 10rem;

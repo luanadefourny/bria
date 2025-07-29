@@ -3,10 +3,11 @@
   /* margin: 0 auto; */
   /* padding: 2rem; */
   /* text-align: center; */
-  display: block;
+  display: flex;
   /* flex-direction: column; */
-  width: 70vw;
-  /* align-items: center; */
+  width: 100%;
+  /* width: 70vw; */
+  justify-content: center;
   box-sizing: border-box;
 }
 /*

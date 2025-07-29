@@ -1,10 +1,13 @@
 .library-container {
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
 }
-
+.library-inner-container {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+}
 .library-books-container {
   padding: 1rem 1rem 0 1rem;
   display: flex;
