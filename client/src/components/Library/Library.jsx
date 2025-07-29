@@ -12,7 +12,7 @@ function Library ({ books, setBooks }) {
         <div className="library-books-container">
           {books?.map(userBook => (
             <Popup key={userBook._id} trigger={<img src={getBookCover(userBook.bookId.cover, 'L')} alt={`cover of ${userBook.bookId.title}`} />} modal >
-              <Book book={ userBook } type="library-popup" />
+              <Book book={ userBook } setBooks={setBooks} type="library-popup" />
             </Popup>
           ))}
         </div>

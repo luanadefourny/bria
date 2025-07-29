@@ -2,7 +2,7 @@ import { getBookCover } from '../../services/apiService';
 import BookPopup from '../BookPopup/BookPopup';
 import './Book.css';
 
-function Book ({ book, type }) {
+function Book ({ book, type, setBooks }) {
 
   function handleClick (e) {
 
@@ -17,7 +17,7 @@ function Book ({ book, type }) {
       )}
 
       {type === 'library-popup' && (
-        <BookPopup book={ book }/>
+        <BookPopup book={ book } setBooks={ setBooks }/>
       )}
 
       {type === 'pick' && (

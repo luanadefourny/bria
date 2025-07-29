@@ -69,6 +69,8 @@ const userBookSchema = new mongoose.Schema({
     default: [''],
     required: false,
   }
+}, {
+  timestamps: true,
 });
 
 const UserBook = mongoose.model('UserBook', userBookSchema);

@@ -14,7 +14,7 @@ function Home ({ books, setBooks }) {
           <CurrentlyReading />
         </div>
         <div className="shelves-home-container">
-          <Shelves books={ books }/>
+          <Shelves books={ books } setBooks={setBooks}/>
         </div>
       </div>
     </div>

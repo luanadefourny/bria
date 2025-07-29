@@ -1,13 +1,44 @@
 import './BookPopup.css';
 import { getBookCover } from '../../services/apiService';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { updateStatus, updateOwned, updateFavorite, updateProgress } from '../../services/userBookService';
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
-function BookPopup ({ book }) {
 
-  const { bookId, status: initialStatus, owned, favorite, format: initialFormats, progress } = book;
+function BookPopup ({ book, setBooks }) {
+
+  const { bookId, status: initialStatus, owned:initialOwned, favorite: initialFavorite, format: initialFormats, progress } = book;
   const [formats, setFormats] = useState(new Set(initialFormats));
   const [status, setStatus] = useState(initialStatus);
-  const [currentPage, setCurrentPage] = useState(Math.round((progress / 100) * (bookId.pages || 1)));
+  const [owned, setOwned] = useState(initialOwned);
+  const [favorite, setFavorite] = useState(initialFavorite);
+  const [currentPage, setCurrentPage] = useState(progress || 0);
+  // const [currentPage, setCurrentPage] = useState(Math.round((progress / 100) * (bookId.pages || 1)));
+
+  useEffect(() => {
+    setBooks(prev => 
+      prev.map(item => 
+        item._id === book._id 
+        ? { ...item, status, owned, favorite, progress: currentPage } 
+        : item))
+  }, [status, owned, favorite, currentPage])
+
+  useEffect(() => {
+    updateStatus(book._id, status);
+  }, [status]);
+  useEffect(() => {
+    updateOwned(book._id, owned);
+  }, [owned]);
+  useEffect(() => {
+    updateFavorite(book._id, favorite);
+  }, [favorite]);
+  useEffect(() => {
+    updateProgress(book._id, currentPage);
+  }, [currentPage])
 
   const toggleFormat = (fmt) => {
     const newFormats = new Set(formats);
@@ -20,7 +51,7 @@ function BookPopup ({ book }) {
     setCurrentPage(page);
   };
 
-  const calculatedProgress = bookId.pages
+  const displayProgress = bookId.pages
     ? Math.min((currentPage / bookId.pages) * 100, 100)
     : 0;
 
@@ -42,7 +73,7 @@ function BookPopup ({ book }) {
           {bookId.pages} pages • {bookId.publishedDate?.split('T')[0]} • {bookId.genres?.join(', ')}
         </p>
 
-        <label>Status:
+        <label>status:
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value="not reading">Not Reading</option>
             <option value="reading">Reading</option>
@@ -51,17 +82,27 @@ function BookPopup ({ book }) {
         </label>
 
         <label>
-          Owned:
-          <input type="checkbox" defaultChecked={owned} />
+          owned:
+          <Checkbox
+            checked={owned}
+            onChange={() => setOwned(!owned)}
+            sx={{ color: 'grey', '&.Mui-checked': { color: '#d66b1f' } }}
+          />
         </label>
 
         <label>
-          Favorite:
-          <input type="checkbox" defaultChecked={favorite} />
+          favorite:
+          <Checkbox
+            checked={favorite}
+            onChange={() => setFavorite(!favorite)}
+            icon={<FavoriteBorderIcon />}
+            checkedIcon={<FavoriteIcon />}
+            sx={{ color: 'grey', '&.Mui-checked': {color:'#d66b1f'}}}
+          />
         </label>
 
         <fieldset className="format-group">
-          <legend>Format:</legend>
+          <legend>format:</legend>
           {['physical', 'kindle', 'audiobook'].map((fmt) => (
             <label key={fmt}>
               <input
@@ -77,7 +118,7 @@ function BookPopup ({ book }) {
         {status === 'reading' && (
           <>
             <label>
-              Page:
+              page:
               <input
                 type="number"
                 min={0}
@@ -88,14 +129,24 @@ function BookPopup ({ book }) {
             </label>
 
             <label>
-              Progress:
-              <progress value={calculatedProgress} max="100" />
-              <span> {Math.round(calculatedProgress)}%</span>
+              progress:
+              <progress value={displayProgress} max="100" />
+              <span> {Math.round(displayProgress)}%</span>
             </label>
           </>
         )}
 
-        <button className="delete-btn">🗑️ Remove Book</button>
+        <Button
+          onClick={() => console.log('delete book')}
+          sx={{
+            minWidth: 0,
+            padding: '8px',
+            color: '#d66b1f',
+            '&:hover': { color: '#a65217', backgroundColor: 'transparent' }
+          }}
+        >
+          <DeleteIcon />
+        </Button>
       </div>
     </div>
   );

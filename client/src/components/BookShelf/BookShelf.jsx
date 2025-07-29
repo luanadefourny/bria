@@ -3,7 +3,7 @@ import Book from '../Book/Book';
 import Popup from 'reactjs-popup';
 
 
-function BookShelf ({ title, books }) {
+function BookShelf ({ title, books, setBooks }) {
   return (
     <div className="bookShelf-container">
       <div className="bookshelf-title">{title}</div>
@@ -17,7 +17,7 @@ function BookShelf ({ title, books }) {
           modal
           contentStyle={{width:'55%', height:'50%'}}
           >
-            <Book book={userBook} type="library-popup" />
+            <Book book={userBook} setBooks={setBooks} type="library-popup" />
           </Popup>
         ))}
       </div>
