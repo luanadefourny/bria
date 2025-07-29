@@ -9,7 +9,7 @@ import logo from './../../assets/bria_logo_green.png';
 import './NavBar.css';
 import 'reactjs-popup/dist/index.css';
 
-function NavBar ({ books, setBooks, setNav }) {
+function NavBar ({ books, setBooks }) {
   return (
     <div className="navBar-container">
       <div className="navbar-logo-navigation-container">
@@ -19,12 +19,12 @@ function NavBar ({ books, setBooks, setNav }) {
           </Link>
         </div>
         <div className="navbar-navigation-container">
-          <div className="navbar-navigation-link" onClick={() => setNav('dashboard')}>
+          <Link to="/home" className="navbar-navigation-link">
             <div>home</div>
-          </div>
-          <div className="navbar-navigation-link" onClick={() => setNav('library')}>
+          </Link>
+          <Link to="/library" className="navbar-navigation-link">
             <div>library</div>
-          </div>
+          </Link>
           <Popup 
             trigger={
               <div className="navbar-navigation-link">

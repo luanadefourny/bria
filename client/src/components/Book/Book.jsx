@@ -18,6 +18,11 @@ function Book ({ book, type }) {
           </div>
         </div>
       )}
+      {type === 'pick' && (
+        <div>
+          
+        </div>
+      )}
     </div>
   );
 };

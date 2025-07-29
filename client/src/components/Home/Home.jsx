@@ -4,16 +4,10 @@ import Library from '../Library/Library';
 
 import './Home.css';
 
-function Home ({ books, setBooks, nav, setNav }) {
+function Home ({ books, setBooks}) {
   return (
     <div className="home-containter">
-      <NavBar books={ books } setBooks={ setBooks } setNav={ setNav } />
-      {nav === 'dashboard' && (
-        <Dashboard books={ books } />
-      )}
-      {nav === 'library' && (
-        <Library books={ books } />
-      )}
+      <Dashboard books={ books } />
     </div>
   );
 };

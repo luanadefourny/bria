@@ -6,10 +6,10 @@ import { getUserBooks } from './services/bookService.js';
 import './App.css'
 import Home from './components/Home/Home';
 import Library from './components/Library/Library';
+import Layout from './components/Layout/Layout.jsx';
 
 function App() {
   const [books, setBooks] = useState([]); //essentially this needs to be the "All" bookshelf
-  const [nav, setNav] = useState('');
 
   useEffect(() => {
     async function fetchUserBooks () {
@@ -26,13 +26,20 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />}></Route>
-      <Route path="/home" element={<Home 
-                                      books={ books } 
-                                      setBooks={ setBooks }
-                                      nav={ nav }
-                                      setNav={ setNav } />}>
+      <Route path="/home" element={
+                            <Layout>
+                              <Home 
+                                books={ books } 
+                                setBooks={ setBooks }
+                              />
+                            </Layout>
+      }>
       </Route>
-      <Route path="/library" element={<Library books={ books } setBooks={ setBooks } />}></Route>
+      <Route path="/library" element={
+                                <Layout>
+                                  <Library books={ books } setBooks={ setBooks } />
+                                </Layout>}>
+      </Route>
     </Routes>
   );
 }

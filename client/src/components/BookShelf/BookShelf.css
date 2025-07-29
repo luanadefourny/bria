@@ -13,4 +13,5 @@
 .book-list {
   display: flex;
   overflow-y: auto;
+  align-items: flex-end;
 }
