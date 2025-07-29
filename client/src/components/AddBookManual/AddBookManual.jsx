@@ -38,7 +38,7 @@ function AddBookManual ({ books, setBooks }) {
       };
       console.log(bookToSubmit);
       const newBook = await postBook(bookToSubmit);
-      setBooks(oldBooks => [...oldBooks, newBook]);
+      setBooks(oldBooks => [newBook, ...oldBooks]);
       console.log('new book manual: ', newBook);
       //reset everything
       setTitle('');

@@ -2,4 +2,5 @@
   display: flex;
   flex-direction: column;
   /* border: green solid 2px; */
+  gap: 1rem;
 }

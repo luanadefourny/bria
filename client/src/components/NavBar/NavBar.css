@@ -5,6 +5,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  background-color: #d6d6d6;
 }
 .navbar-logo {
   width: 10rem;

@@ -1,6 +1,8 @@
 .book-shelf-container {
   /* display: flex; */
-  
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    margin-bottom: 8px;
   /* border: red solid 2px; */
 }
 .book-library-popup-container {

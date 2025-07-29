@@ -25,7 +25,7 @@ function AddBookIsbn ({ books, setBooks }) {
       console.log('book: ', book);
       const newBook = await postBook(book);
       console.log('new book entry: ', newBook);
-      setBooks(oldBooks => [...oldBooks, newBook]);
+      setBooks(oldBooks => [newBooks, ...oldBooks]);
       setIsbn('')
       //TODO: add validation message for user to know it was added successfully
     } catch (error) {
