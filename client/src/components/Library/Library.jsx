@@ -7,7 +7,7 @@ import { getBookCover } from '../../services/apiService';
 function Library ({ books, setBooks }) {
   return (
     <div className="library-containter">
-      <NavBar books={ books } setBooks={ setBooks } />
+      {/* <NavBar books={ books } setBooks={ setBooks } /> */}
       <div className="library-books-container">
         {books?.map(userBook => (
           <Popup trigger={<img src={getBookCover(userBook.bookId.cover, 'L')} alt={`cover of ${userBook.bookId.title}`} />} modal >

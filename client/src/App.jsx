@@ -9,6 +9,7 @@ import Library from './components/Library/Library';
 
 function App() {
   const [books, setBooks] = useState([]); //essentially this needs to be the "All" bookshelf
+  const [nav, setNav] = useState('');
 
   useEffect(() => {
     async function fetchUserBooks () {
@@ -25,7 +26,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />}></Route>
-      <Route path="/home" element={<Home books={ books } setBooks={ setBooks } />}></Route>
+      <Route path="/home" element={<Home 
+                                      books={ books } 
+                                      setBooks={ setBooks }
+                                      nav={ nav }
+                                      setNav={ setNav } />}>
+      </Route>
       <Route path="/library" element={<Library books={ books } setBooks={ setBooks } />}></Route>
     </Routes>
   );

@@ -24,15 +24,15 @@ function AddBook ({ books, setBooks }) {
 
       <div className="addbook-mode-container">
         {mode === 'search' && (
-          <SearchBar books={ books } setBokos={ setBooks } />
+          <SearchBar books={ books } setBooks={ setBooks } />
         )}
 
         {mode === 'isbn' && (
-          <AddBookIsbn books={ books } setBokos={ setBooks } />
+          <AddBookIsbn books={ books } setBooks={ setBooks } />
         )}
 
         {mode === 'manual' && (
-          <AddBookManual books={ books } setBokos={ setBooks } />
+          <AddBookManual books={ books } setBooks={ setBooks } />
         )}
       </div>
     </div>
