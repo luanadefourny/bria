@@ -6,12 +6,13 @@ const UserBook = require('../models/userBooks');
 const Shelf = require('../models/shelves');
 const User = require('../models/users');
 
-const userId = new mongoose.Types.ObjectId('64a0c0b0c3f8fa2d1e4b0001');
+const USER_ID = process.env.USER_ID;
+
 const shelfIds = {
-  all: new mongoose.Types.ObjectId('64a0c0b0c3f8fa2d1e4c0011'),
-  read: new mongoose.Types.ObjectId('64a0c0b0c3f8fa2d1e4c0001'),
-  want: new mongoose.Types.ObjectId('64a0c0b0c3f8fa2d1e4c0002'),
-  owned: new mongoose.Types.ObjectId('64a0c0b0c3f8fa2d1e4c0003'),
+  all: process.env.ALL_SHELF_ID,
+  read: process.env.READ_SHELF_ID,
+  want: process.env.WANT_SHELF_ID,
+  owned: process.env.OWNED_SHELF_ID,
 };
 
 function getRandomElements(arr, n) {
@@ -25,10 +26,7 @@ function getRandomElements(arr, n) {
 }
 
 async function seed() {
-  // await mongoose.connect('mongodb://localhost:27017/bria_mocks'); // adjust as needed
-  const uri = process.env.USE_MOCK_DB === 'true'
-    ? process.env.MONGO_URI_MOCK
-    : process.env.MONGO_URI;
+  const uri = process.env.MONGO_URI;
 
   await (async () => {
     try {
@@ -41,37 +39,36 @@ async function seed() {
       console.log(`Could not connect: ${error}`);
     }
   })();
-  // await mongoose.connect('mongodb://localhost:27017/bria_mocks'); // adjust as needed
 
   // Seed User and Shelf collections
   const user = {
-    _id: userId,
-    username: 'luanadefourny',
-    email: 'luanadefourny@gmail.com',
+    _id: USER_ID,
+    username: 'User 1',
+    email: 'user1@test.com',
   };
 
     const shelvesList = [
     {
       _id: shelfIds.all,
-      userId,
+      userId: USER_ID,
       title: 'All',
       description: 'Books read, owned and want to get to'
     },
     {
       _id: shelfIds.read,
-      userId,
+      userId: USER_ID,
       title: 'Read',
       description: 'Books I’ve finished'
     },
     {
       _id: shelfIds.want,
-      userId,
+      userId: USER_ID,
       title: 'Want to Read',
       description: 'Books I want to get to'
     },
     {
       _id: shelfIds.owned,
-      userId,
+      userId: USER_ID,
       title: 'Owned',
       description: 'Books I physically or digitally own'
     }
@@ -126,7 +123,7 @@ async function seed() {
     if (!isRead && !isOwned) shelfList.push(shelfIds.want);
 
     return {
-      userId,
+      userId: USER_ID,
       bookId: book._id,
       shelfIds: shelfList,
       progress: isRead ? 100 : 0,
