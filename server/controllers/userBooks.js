@@ -1,5 +1,6 @@
 'use strict';
 
+const { updateFavorite } = require('../../client/src/services/userBookService.js');
 const UserBook = require('./../models/userBooks.js');
 
 const DEFAULT_USER_ID = '64a0c0b0c3f8fa2d1e4b0001';
@@ -7,7 +8,7 @@ const DEFAULT_USER_ID = '64a0c0b0c3f8fa2d1e4b0001';
 async function getUserBooks (req, res) {
   try {
     const userBooks = await UserBook.find({ userId: DEFAULT_USER_ID })
-      .sort({ createdAt: -1 })
+      .sort({ createdAt: 1 })
       .populate('bookId');
     console.log('userBooks in getuserbooks userbooks controller: ',userBooks);
     res.status(201).json(userBooks);
@@ -93,6 +94,21 @@ async function updateUserBookFormat (req, res) {
   }
 }
 
+async function updateUserBookShelves (req, res) {
+  const { bookId } = req.params;
+  const { shelves } = req.body;
+  console.log(bookId);
+  console.log(shelves);
+  try {
+    const updatedBook = await UserBook.findByIdAndUpdate(bookId, { shelfIds: shelves }, {new: true});
+    console.log('updated: ', updatedBook);
+    res.status(200).json(updatedBook);
+  } catch (error) {
+    res.status(500);
+    res.json(error);
+  }
+}
+
 // async function deleteUserBook (req, res) {
 //   const {bookId } = req.params;
 //   try {
@@ -111,4 +127,5 @@ module.exports = {
   updateUserBookFavorite, 
   updateUserBookProgress,
   updateUserBookFormat,
+  updateUserBookShelves,
 };

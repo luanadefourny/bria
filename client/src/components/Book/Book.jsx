@@ -33,7 +33,7 @@ function Book ({ book, type, setBooks }) {
       {type === 'current' && (
         <div className="book-current-container">
           <img className="book-library-cover-container" src={getBookCover(book.bookId.cover, 'M')} alt={`cover of ${book.bookId.title}`} />
-          <div>{book.bookId.title}</div>
+          <div className="book-current-title">{book.bookId.title}</div>
         </div>
       )}
     </div>

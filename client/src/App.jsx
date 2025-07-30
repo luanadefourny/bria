@@ -14,8 +14,9 @@ function App() {
   useEffect(() => {
     async function fetchUserBooks () {
       try {
-        const userBooks = await getUserBooks(); 
-        setBooks(userBooks);
+        const userBooks = await getUserBooks();
+        const filteredBooks = userBooks.filter(book => {if (book.bookId.cover) return book});
+        setBooks(filteredBooks);
       } catch (error) {
         console.log(error);
       }

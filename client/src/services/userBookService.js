@@ -73,10 +73,25 @@ async function updateFormat (bookId, format) {
   }
 }
 
+async function updateShelves (bookId, shelves) {
+  const res = await fetch(`${url}/userbooks/${bookId}/shelves`, {
+    method: "PUT",
+    body: JSON.stringify({ shelves }),
+    headers: { "Content-Type": "application/json" }
+  });
+  if (res.ok) {
+    const data = await res.json(data);
+    return data;
+  } else {
+    throw new Error('There was an error fetching the data - updateShelves');
+  }
+}
+
 export { 
   updateProgress, 
   updateStatus, 
   updateOwned, 
   updateFavorite,
   updateFormat,
+  updateShelves,
 };

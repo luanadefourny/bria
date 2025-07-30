@@ -27,7 +27,7 @@ function CurrentlyReading ({books=[], setBooks}) {
             </div>
           } 
           modal
-          contentStyle={{width:'55%', height:'50%'}}
+          contentStyle={{width:'65%', height:'60%'}}
           >
             <Book book={book} setBooks={setBooks} type="library-popup" />
           </Popup>

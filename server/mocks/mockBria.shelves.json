@@ -1,0 +1,68 @@
+[{
+  "_id": {
+    "$oid": "64a0c0b0c3f8fa2d1e4c0011"
+  },
+  "userId": {
+    "$oid": "64a0c0b0c3f8fa2d1e4b0001"
+  },
+  "title": "All",
+  "description": "Books read, owned and want to get to",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64a0c0b0c3f8fa2d1e4c0001"
+  },
+  "userId": {
+    "$oid": "64a0c0b0c3f8fa2d1e4b0001"
+  },
+  "title": "Read",
+  "description": "Books I’ve finished",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64a0c0b0c3f8fa2d1e4c0002"
+  },
+  "userId": {
+    "$oid": "64a0c0b0c3f8fa2d1e4b0001"
+  },
+  "title": "Want to Read",
+  "description": "Books I want to get to",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "64a0c0b0c3f8fa2d1e4c0003"
+  },
+  "userId": {
+    "$oid": "64a0c0b0c3f8fa2d1e4b0001"
+  },
+  "title": "Owned",
+  "description": "Books I physically or digitally own",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-27T23:40:32.599Z"
+  }
+}]

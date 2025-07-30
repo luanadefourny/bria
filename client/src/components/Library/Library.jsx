@@ -11,7 +11,7 @@ function Library ({ books, setBooks }) {
       <div className="library-inner-container">
         <div className="library-books-container">
           {books?.map(userBook => (
-            <Popup key={userBook._id} trigger={<img src={getBookCover(userBook.bookId.cover, 'L')} alt={`cover of ${userBook.bookId.title}`} />} modal >
+            <Popup key={userBook._id} trigger={<img src={getBookCover(userBook.bookId.cover, 'M')} alt={`cover of ${userBook.bookId.title}`} />} modal contentStyle={{width:'65%', height:'60%'}}>
               <Book book={ userBook } setBooks={setBooks} type="library-popup" />
             </Popup>
           ))}

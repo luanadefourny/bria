@@ -27,6 +27,8 @@ async function postBook (bookData) {
 
 async function getUserBooks () {
   const res = await fetch(`${localUrl}/books`);
+  //sort books
+  
   console.log(res);
   if (res.ok) {
     const data = await res.json();

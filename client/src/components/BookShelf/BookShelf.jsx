@@ -15,7 +15,7 @@ function BookShelf ({ title, books, setBooks }) {
             </div>
           } 
           modal
-          contentStyle={{width:'55%', height:'50%'}}
+          contentStyle={{width:'65%', height:'60%'}}
           >
             <Book book={userBook} setBooks={setBooks} type="library-popup" />
           </Popup>

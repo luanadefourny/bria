@@ -1,12 +1,16 @@
 import './BookPopup.css';
 import { getBookCover } from '../../services/apiService';
 import { useState, useEffect } from 'react';
-import { updateStatus, updateOwned, updateFavorite, updateProgress, updateFormat } from '../../services/userBookService';
+import { updateStatus, updateOwned, updateFavorite, updateProgress, updateFormat, updateShelves } from '../../services/userBookService';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+
+const OWNED_SHELF_ID = '64a0c0b0c3f8fa2d1e4c0003'; //TODO should not be hardcoded
+const READ_SHELF_ID = '64a0c0b0c3f8fa2d1e4c0001'; //TODO should not be hardcoded
 
 
 function BookPopup ({ book, setBooks }) {
@@ -29,9 +33,43 @@ function BookPopup ({ book, setBooks }) {
 
   useEffect(() => {
     updateStatus(book._id, status);
+    setBooks(prev =>
+      prev.map(item => {
+        if (item._id !== book._id) return item;
+
+        const newShelfIds = new Set(item.shelfIds);
+        if (status === 'read') newShelfIds.add(READ_SHELF_ID);
+        else newShelfIds.delete(READ_SHELF_ID);
+
+        // Also update shelves in backend
+        updateShelves(book._id, Array.from(newShelfIds));
+
+        return {
+          ...item,
+          shelfIds: Array.from(newShelfIds),
+        };
+      })
+    );
   }, [status]);
   useEffect(() => {
     updateOwned(book._id, owned);
+    setBooks(prev =>
+      prev.map(item => {
+        if (item._id !== book._id) return item;
+
+        const newShelfIds = new Set(item.shelfIds);
+        if (owned) newShelfIds.add(OWNED_SHELF_ID);
+        else newShelfIds.delete(OWNED_SHELF_ID);
+
+        // Also update shelves in backend
+        updateShelves(book._id, Array.from(newShelfIds));
+
+        return {
+          ...item,
+          shelfIds: Array.from(newShelfIds),
+        };
+      })
+    );
   }, [owned]);
   useEffect(() => {
     updateFavorite(book._id, favorite);
@@ -83,13 +121,24 @@ function BookPopup ({ book, setBooks }) {
           {bookId.pages} pages • {bookId.publishedDate?.split('T')[0]} • {bookId.genres?.join(', ')}
         </p>
 
-        <label>status:
-          <select value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="not reading">Not Reading</option>
-            <option value="reading">Reading</option>
-            <option value="read">Read</option>
-          </select>
+        <label>
+          status
+          <FormControl  sx={{ alignSelf: 'flex-end', width: 150, mt: 2 }}>
+            {/* <InputLabel id="status-label" sx={{color:'141204'}}>Status</InputLabel> */}
+            <Select
+              labelId="status-label"
+              value={status}
+              // label="Status"
+              onChange={(e) => setStatus(e.target.value)}
+              sx={{ backgroundColor: '#f5f5f5', '&.Mui-focused .MuiOutlinedInput-notchedOutline': {borderColor: '#d66b1f'}}}
+            >
+              <MenuItem value="not reading">Not Reading</MenuItem>
+              <MenuItem value="reading">Reading</MenuItem>
+              <MenuItem value="read">Read</MenuItem>
+            </Select>
+          </FormControl>
         </label>
+
 
         <label>
           owned:
@@ -111,19 +160,21 @@ function BookPopup ({ book, setBooks }) {
           />
         </label>
 
-        <fieldset className="format-group">
-          <legend>format:</legend>
-          {['physical', 'kindle', 'audiobook'].map((fmt) => (
-            <label key={fmt}>
-              <input
-                type="checkbox"
-                checked={formats.has(fmt)}
-                onChange={() => toggleFormat(fmt)}
-              />
-              {fmt}
-            </label>
-          ))}
-        </fieldset>
+        {owned && (
+          <fieldset className="format-group">
+            <legend>format:</legend>
+            {['physical', 'kindle', 'audiobook'].map((fmt) => (
+              <label key={fmt}>
+                <input
+                  type="checkbox"
+                  checked={formats.has(fmt)}
+                  onChange={() => toggleFormat(fmt)}
+                />
+                {fmt}
+              </label>
+            ))}
+          </fieldset>
+        )}
 
         {status === 'reading' && (
           <>
