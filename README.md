@@ -1,90 +1,57 @@
-# bria
-### Book Recommendation & Insight Assistant
+# BRIA
 
-> Book tracker, with stats and decision making component.
+<p align="center">
+  <img src="images/bria-logo.png" style="border-radius: 0px;" />
+</p>
 
-## Project description
-The app will be a database for a user's personal library, as well as be able to pick the user's next read or buy. It will be able to store books that have been read, books that are owned but not read yet, and books that aren't owned but plan to be. It will be able to categorize books by format (physical, kindle, audiobook). If a user wants to read or buy something new, it will pick something from the available shelves according to a few filters, simplifying the decision making process. It will also track progress on books being currently read.
+> BRIA is a book tracker with stats and a decision making assistant so you never have to think twice about which books to read or purchase next. It is connected to the OpenLibrary API and therefore you can add books to your hearts content and track your reading progress. Fill your shelves and edit book information and then let the app recommend what to read next based on a few questions.
 
-## MVP
-Being able to choose a book to read next based on selected filters.
+## Screenshots
 
-## Tech Stach
-**Front End:** React & Vite, MUI (components), plop + handlebars (automation)
-
-**Back End:** Express, MongoDB (mongoose), OpenLibrary API
+<p align="center">
+  <img src="images/bria-laptop-2-transparent.png" style="height: 500px" />
+</p>
 
 
-## Installation
-- Fork the [bria](https://github.com/luanadefourny/bria) repository
 
-- Run `git clone` from your fork
+## Getting started
+1. Clone the [BRIA](https://github.com/luanadefourny/bria) repository
 
-- Install all the dependencies, seed the database and run the app
-
-**Root directory**
+2. Install dependencies
 
 ```
 npm install
-```
-**Server side**
-```
 cd server
 npm install
-```
-**Seed the mock data** (from the server directory)
-
-To populate the database with mock data for development, you will have to create a `.env` file as well as run some JS code before building the app.
-
-1. Create the `.env` file (from the root directory)
-```
-touch .env
-```
-2. Add the necessary environment variables
-```
-# Database
-MONGO_URI=mongodb://localhost:27017/mockBria
-DB_NAME=mockBria
-
-# User ID
-USER_ID=64a0c0b0c3f8fa2d1e4b0001
-
-# Shelf IDs
-READ_SHELF_ID=64a0c0b0c3f8fa2d1e4c0001
-WANT_SHELF_ID=64a0c0b0c3f8fa2d1e4c0002
-OWNED_SHELF_ID=64a0c0b0c3f8fa2d1e4c0003
-ALL_SHELF_ID=64a0c0b0c3f8fa2d1e4c0011
-```
-3. Run the seed file
-```
-node mocks/seedMockData.js
-```
->Please ignore the seed.js file :)
-
-**Run the server**
-```
-nodemon index.js
-```
-**Client side**
-```
 cd ../client
 npm install
+```
+
+3. Add environment variables
+
+- Create a `.env` file (based on the `.env.example` file)
+- Copy the `.env.example` file to `.env` (server)
+  ```
+  cp .env.example .env
+  ```
+
+4. Run the app
+
+```
 npm run dev
+cd ../server
+nodemon index.ts
 ```
 
-## Add functionality
-If you want to refactor some of the component and add new ones, feel free to use the scripts I have created. Running them allows the creation of Component and Service files. They are run straight from the client directory and will create the respective directories, js and css files where needed with a predesign template.
-```
-npx plop component componentName
-```
-```
-npx plop service serviceName
-```
+5. Click 'Get Started' and you're all set to use the app!
 
-## Documentation
-I also have the added functionality of creating JSDocs. This is extremely helpful to know what each part of the code is doing and see all of it in one place. From the root directory, running the following command with go through all the files in both server and client, recursively, and output an index.html file (found in the client side in a docs directory) that you can open in the browser and take a look at each function.
+## Tech Stack
 
-*I unfortunately did not get around to completing these but I did give it a start so you can see how it works. The commenting in the code has to be structured in a specific way.*
-```
-npm run jsdocs
-```
+* JavaScript
+* React
+* Express
+* MongoDB (Mongoose)
+
+## Developers
+
+* Luana Defourny - [GitHub](https://github.com/luanadefourny) - [LinkedIn](https://www.linkedin.com/in/luanadefourny/)
